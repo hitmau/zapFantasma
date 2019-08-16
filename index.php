@@ -24,24 +24,24 @@ body{
 
 .body{
 	position: absolute;
-	top: -20px;
-	left: -20px;
-	right: -40px;
-	bottom: -40px;
+	top: -70px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
 	width: auto;
 	height: auto;
-	background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg);
+	background-image: url(https://newevolutiondesigns.com/images/freebies/city-wallpaper-9.jpg);
 	background-size: cover;
-	-webkit-filter: blur(5px);
+	-webkit-filter: blur(0px);
 	z-index: 0;
 }
 
 .grad{
 	position: absolute;
-	top: -20px;
-	left: -20px;
-	right: -40px;
-	bottom: -40px;
+	top: -70px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
 	width: auto;
 	height: auto;
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
@@ -65,7 +65,28 @@ body{
 }
 
 .header div span{
-	color: #ccc !important;
+	color: red !important;
+  left: -20px;
+}
+
+.header2{
+	position: absolute;
+	top: calc(50% - 17px);
+	left: calc(50% - 219px);
+  opacity: 0.5;
+	z-index: 2;
+}
+
+.header2 div{
+	float: left;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 35px;
+	font-weight: 200;
+}
+
+.header2 div span{
+	color: #cf4 !important;
   left: -20px;
 }
 
@@ -83,8 +104,8 @@ body{
 	width: 250px;
 	height: 30px;
 	background: transparent;
-	border: 1px solid rgba(255,255,255,0.6);
-	border-radius: 2px;
+	border: 2px solid rgba(255,255,255,1);
+	border-radius: 5px;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
@@ -96,8 +117,8 @@ body{
 	width: 250px;
 	height: 30px;
 	background: transparent;
-	border: 1px solid rgba(255,255,255,0.6);
-	border-radius: 2px;
+	border: 2px solid rgba(255,255,255,1);
+	border-radius: 5px;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
@@ -110,9 +131,9 @@ body{
 	width: 260px;
 	height: 35px;
 	background: #fff;
-	border: 1px solid #fff;
+	border: 2px solid #fff;
 	cursor: pointer;
-	border-radius: 2px;
+	border-radius: 5px;
 	color: #a18d6c;
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
@@ -123,33 +144,33 @@ body{
 }
 
 .login input[type=button]:hover{
-	opacity: 0.8;
+	opacity: 1;
 }
 
 .login input[type=button]:active{
-	opacity: 0.6;
+	opacity: 1;
 }
 
 .login input[type=text]:focus{
 	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
+	border: 2px solid rgba(255,0,70,1);
 }
 
 .login input[type=password]:focus{
 	outline: none;
-	border: 1px solid rgba(255,255,255,0.9);
+	border: 2px solid rgba(255,0,70,1);
 }
 
 .login input[type=button]:focus{
-	outline: none;
+	outline: 2px solid blue;
 }
 
 ::-webkit-input-placeholder{
-   color: rgba(255,255,255,0.6);
+   color: rgba(255,255,255,1);
 }
 
 ::-moz-input-placeholder{
-   color: rgba(255,255,255,0.6);
+   color: rgba(255,255,255,1);
 }
 
 input[type=submit]:hover {
@@ -158,15 +179,15 @@ input[type=submit]:hover {
 
 input[type=submit] {
   width: 260px;
-	height: 30px;
+	height: 35px;
 	background: transparent;
-	border: 1px solid rgba(255,255,255,0.9);
-	border-radius: 2px;
+	border: 2px solid rgba(255,255,255,1);
+	border-radius: 5px;
 	color: #fff;
 	font-family: 'Exo', sans-serif;
 	font-size: 16px;
 	font-weight: 400;
-	padding: 4px;
+	padding: 5px;
 	margin-top: 10px;
 }
     </style>
@@ -181,7 +202,10 @@ input[type=submit] {
 		<div class="grad"></div>
 		<div class="header">
 			<div>ZAP<span>Fantasma</span></div>
-		</div>
+    </div>
+    <div class="header2">
+			<div><span>Fantasma</span></div>
+    </div>
 		<br>
 		<div class="login">
 

@@ -4,14 +4,14 @@ $codinteracao = $_POST['codinteracao'];
 
 require '../conector/conexion.php';
 
-$query = "select i.entrada, i.tipo, i.servico, i.ativo, p.obs FROM interacao i left join parametros p on (i.servico = p.tipo) WHERE codinteracao = $codinteracao";
+$query = "select i.entrada, i.tipo, i.ativo, p.obs FROM interacao i left join parametros p on (i.tipo = p.tipo) WHERE codinteracao = $codinteracao";
 
 $sql = mysqli_query($conn, $query);
 $row = mysqli_fetch_array($sql);
 
 	$entrada = $row['entrada'];
 	$itipo = $row['tipo'];
-	$servico = $row['servico'];
+	//$servico = $row['servico'];
 	$obs = $row['obs'];
 	$iativo = $row['ativo'];
 ?>
@@ -40,7 +40,7 @@ while($row_s = mysqli_fetch_array($sql, MYSQLI_ASSOC)){
 			}
 			?>
 	</select>
-
+<?php /*
 	<label for="servico"> Serviço </label>
 	<select class="form-control" id="iiservico" onchange="select_usuario();">
 		<option value="<?php echo $servico; ?>"><?php echo $obs; ?></option>
@@ -53,13 +53,13 @@ $sql = mysqli_query($conn, $query);
 while($row_p = mysqli_fetch_array($sql, MYSQLI_ASSOC)){
 				 $ptipo = $row_p['tipo'];
 				 $obs = $row_p['obs'];
-				 ?>
-				 <option value="<?php echo $ptipo; ?>"> <?php echo $obs; ?></option>
-				 <?php
-		 }
-		 ?>
- </select>
 
+				 <option value="<?php echo $ptipo; ?>"> <?php echo $obs; ?></option>
+
+		 }
+</select>
+*/
+?>
 <label for="ativo"> ativo </label>
 <select id="iiativo" class="form-control">
 	<?php if ($iativo == 'S') {

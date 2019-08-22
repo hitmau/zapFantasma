@@ -3,6 +3,7 @@
 		<thead class="titulo" bgcolor="#00FF00">
 	<tr>
 		<th bgcolor="#888"> # </th>
+		<th bgcolor="#888"> Ref. </th>
 		<th bgcolor="#888"> Entrada </th>
 		<th bgcolor="#888"> Tipo </th>
 		<th bgcolor="#888"> Tipo saida </th>
@@ -18,13 +19,14 @@ $codusuario = $_POST['cod'];
 require '../conector/conexion.php';
 
 $i = 0;
-$query = "select i.codinteracao as codinteracao, i.entrada as entrada, i.tipo as tipo, i.tiposaida as tiposaida, i.ativo as ativo from interacao i where i.codusuario = $codusuario order by 1 desc";
+$query = "select i.codinteracao as codinteracao, i.ref as ref, i.entrada as entrada, i.tipo as tipo, i.tiposaida as tiposaida, i.ativo as ativo from interacao i where i.codusuario = $codusuario order by 1 desc";
 
 $sql = mysqli_query($conn, $query);
 
 while($row = mysqli_fetch_array($sql)){
 	$i++;
 	$icodinteracao = $row['codinteracao'];
+	$ref = $row['ref'];
 	$entrada = $row['entrada'];
 	$itipo = $row['tipo'];
 	$tiposaida = $row['tiposaida'];
@@ -32,6 +34,7 @@ while($row = mysqli_fetch_array($sql)){
 ?>
      <tr>
      	<td class="css-selector"> <?php echo $i; ?></td>
+			<td class="css-selector"> <?php echo $ref; ?></td>
      	<td class="css-selector"> <?php echo $entrada; ?></td>
      	<td class="css-selector"> <?php echo $itipo; ?></td>
 			<td class="css-selector"> <?php if ($tiposaida == 'a') {echo 'Imprimir aleatório'; } else {echo 'Imprimir todos';} ?></td>

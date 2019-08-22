@@ -32,9 +32,9 @@
 	        /*Definindo cor das Linhas impáres*/
 	        .full_table_list tr:nth-child(odd) {background: #FFF}
 
-					.css-selector {font-family: 'Fira Sans Extra Condensed', sans-serif; font-size:20px;}
+					.css-selector {font-family: 'Fira Sans Extra Condensed', sans-serif; font-size:15px;}
 
-					.titulo {font-family: 'Fira Sans Extra Condensed', sans-serif; font-size:23px;}
+					.titulo {font-family: 'Fira Sans Extra Condensed', sans-serif; font-size:18px;}
 
 	    </style>
 
@@ -95,7 +95,7 @@
 							                $entrada = $row_s['saida'];
 							                ?>
 
-							                <option value="<?php echo $entrada; ?>"><?php echo "{" . $codinteracao  . "} - " . $entrada; ?></option>
+							                <option value="<?php echo $codinteracao; ?>"><?php echo "{" . $codinteracao  . "} - " . $entrada; ?></option>
 							                <?php
 							            }
 							            ?>

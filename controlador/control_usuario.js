@@ -133,11 +133,13 @@ function btn_guardar_dato(cod)
 {
 	 var entrada = $("#entrada").val();
 	 var itipo = $("#itipo").val();
+	 var tiposaida = $("#tiposaida").val();
+	 var msganterior = $("#msganterior").val();
 	 var iativo = $("#iiiativo").val();
 
 	//alert(cod + " - "+entrada+" - "+itipo+" - "+iativo);
 
-	 var ob = {cod:cod, entrada:entrada, itipo:itipo, iativo:iativo};
+	 var ob = {cod:cod, entrada:entrada, itipo:itipo, tiposaida:tiposaida, iativo:iativo , msganterior:msganterior};
 	 $.ajax({
                 type: "POST",
                 url:"../modelo/modelo_registrar_datos.php",

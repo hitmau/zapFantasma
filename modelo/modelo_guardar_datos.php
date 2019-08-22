@@ -2,13 +2,12 @@
  $codinteracao = $_POST['codinteracao'];
  $entrada = $_POST['entrada'];
  $tipo = $_POST['tipo'];
- //$servico = $_POST['servico'];
+ $tiposaida = $_POST['tiposaida'];
  $ativo = $_POST['ativo'];
-
 
  require '../conector/conexion.php';
 
-$query = "update interacao SET entrada = '$entrada', tipo = '$tipo', ativo = '$ativo' WHERE codinteracao = $codinteracao";
+$query = "update interacao SET entrada = '$entrada', tipo = '$tipo', tiposaida = '$tiposaida', ativo = '$ativo' WHERE codinteracao = $codinteracao";
 
 $sql = mysqli_query($conn, $query);
 

@@ -72,26 +72,58 @@
     	<h3 align="center"> Registro de Dados </h3>
     	<div id="panel_registro" style="padding: 0%; box-shadow: 1px 2px 2px #A4A4A4; border:1px solid #A4A4A4;" align="center">
     		<!-- Panel de datos -->
-				<table class="table table-condensed" style="width: 100%;">
+				<table class="table table-condensed" style="width:100%;">
 					<tr>
 						<td>
 							<h4 align="center"> Entrada </h4>
 							<!-- Painel de entrada -->
-				    		<table class="table table-condensed" style="width: 100%;">
-				    			<tr>
+				    		<table class="table table-condensed" style="width:100%;">
+									<tr>
+										<td> <label> Msg anterior </label></td>
+										<td> <select style="width:500px;" class="form-control" id="msganterior" onchange="select_tipo(<?php echo $_SESSION['cod']; ?>);">
+											   <option value=""> Sem msg anterior (msg inicial) </option>
+							            <?php
+													$codusuario = $_SESSION['cod'];
+							            require '../conector/conexion.php';
+
+							            $query = "SELECT entrada, saida FROM saida s inner join interacao i on (s.codinteracao=i.codinteracao) where s.ativo = 'S' and i.codusuario = $codusuario and i.tipo <> '$' order by 1";
+
+										$sql = mysqli_query($conn, $query);
+
+										while($row_s = mysqli_fetch_array($sql, MYSQLI_ASSOC)){
+							                $codinteracao = $row_s['entrada'];
+							                $entrada = $row_s['saida'];
+							                ?>
+
+							                <option value="<?php echo $entrada; ?>"><?php echo "{" . $codinteracao  . "} - " . $entrada; ?></option>
+							                <?php
+							            }
+							            ?>
+							        </select>
+										  </td>
+								  </tr>
 				    				<td> <label> Entrada </label></td>
-				    				<td> <input type="text" id="entrada" class="form-control" placeholder="* Texto de entrada (use vírgula para definir mais de 1 palavra)"></td>
-								</tr>
+				    				<td> <input type="text" id="entrada" style="width:500px;" class="form-control" placeholder="* Texto de entrada (use vírgula para definir mais de 1 palavra)"></td>
+									</tr>
 				    			<tr> <td> <label> Tipo de busca </label></td>
 				    				<td>
-										<select id="itipo" class="form-control">
+										<select id="itipo" style="width:500px;" class="form-control">
+											<option value=''>Como a entrada será encontrada?</option>
 										<option value='='>Igual</option>
 										<option value='%'>Contém</option>
 									</td>
 								</tr>
+								<tr> <td> <label> Tipo de saída </label></td>
+									<td>
+									<select id="tiposaida" style="width:500px;" class="form-control" style="width:500px;">
+									<option value=''>Comportamento das saídas selecionando esta entrada.</option>
+									<option value='a'>Aleatória</option>
+									<option value='t'>Todas as saídas</option>
+								</td>
+							</tr>
 				    		<tr> <td> <label> Ativo </label></td>
 				    				<td>
-										<select id="iiiativo" class="form-control">
+										<select id="iiiativo" style="width:500px;" class="form-control">
 										<option value='S'>Sim</option>
 										<option value='N'>Não</option>
 									</td>
@@ -113,10 +145,10 @@
 						<td>
 							<h4 align="center"> Saída </h4>
 							<!-- Painel de saída -->
-							<table class="table table-condensed" style="width: 100%;">
+							<table class="table table-condensed" style="width:100%;">
 								<tr>
 									<td> <label> Resposta da entrada </label></td>
-									<td> <select class="form-control" id="scodinteracao" onchange="select_tipo(<?php echo $_SESSION['cod']; ?>);">
+									<td> <select style="width:500px;"  class="form-control" id="scodinteracao" onchange="select_tipo(<?php echo $_SESSION['cod']; ?>);">
 										   <option value=""> Selecione </option>
 						            <?php
 												$codusuario = $_SESSION['cod'];
@@ -141,7 +173,7 @@
 							  </tr>
 								<tr>
 									<td> <label> Saída(s) </label></td>
-									<td> <input type="text" id="ssaida" class="form-control" placeholder="* Resposta dada ao usuário."></td>
+									<td> <textarea id="ssaida" style="width:500px;" class="form-control" placeholder="* Resposta dada ao usuário." rows="4"></textarea></td>
 							  </tr>
 								<tr>
 									<td> <label> Tipo de Saída </label></td>
@@ -152,7 +184,7 @@
 							  </tr>
 								<tr>
 									<td><label> Ativo </label></td>
-									<td><select id="sativo" class="form-control">
+									<td><select id="sativo" style="width:500px;" class="form-control">
 											<option value='S'>Sim</option>
 											<option value='N'>Não</option>
 											</select>

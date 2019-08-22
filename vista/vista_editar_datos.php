@@ -4,14 +4,14 @@ $codinteracao = $_POST['codinteracao'];
 
 require '../conector/conexion.php';
 
-$query = "select i.entrada, i.tipo, i.ativo, p.obs FROM interacao i left join parametros p on (i.tipo = p.tipo) WHERE codinteracao = $codinteracao";
+$query = "select i.entrada, i.tiposaida, i.tipo, i.ativo, p.obs FROM interacao i left join parametros p on (i.tipo = p.tipo) WHERE codinteracao = $codinteracao";
 
 $sql = mysqli_query($conn, $query);
 $row = mysqli_fetch_array($sql);
 
 	$entrada = $row['entrada'];
 	$itipo = $row['tipo'];
-	//$servico = $row['servico'];
+	$tiposaida = $row['tiposaida'];
 	$obs = $row['obs'];
 	$iativo = $row['ativo'];
 ?>
@@ -40,6 +40,26 @@ while($row_s = mysqli_fetch_array($sql, MYSQLI_ASSOC)){
 			}
 			?>
 	</select>
+	<label for="tipo"> tipo saida </label>
+	<select class="form-control" id="iitipo" onchange="select_usuario();">
+			 <option value="<?php echo $tiposaida; ?>"> <?php if ($tiposaida == 'a') {echo 'Imprimir aleatório'; } else {echo 'Imprimir todos';} ?> </option>
+				<?php
+
+				require '../conector/conexion.php';
+
+				$query = "Select distinct tiposaida From interacao where tiposaida not in ('$tiposaida','') order by 1 desc";
+
+	$sql = mysqli_query($conn, $query);
+
+	while($row_s = mysqli_fetch_array($sql, MYSQLI_ASSOC)){
+						$tiposaida = $row_s['tiposaida'];
+						?>
+
+						<option value="<?php echo $tiposaida; ?>"> <?php if ($tiposaida == 'a') {echo 'Imprimir aleatório'; } else {echo 'Imprimir todos';} ?></option>
+						<?php
+				}
+				?>
+		</select>
 <?php /*
 	<label for="servico"> Serviço </label>
 	<select class="form-control" id="iiservico" onchange="select_usuario();">

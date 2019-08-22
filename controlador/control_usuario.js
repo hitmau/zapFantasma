@@ -462,12 +462,13 @@ function btn_guardar_edicion(cod)
    var codinteracao = $("#iicodinteracao").val();
 	 var entrada = $("#iientrada").val();
 	 var tipo = $("#iitipo").val();
+	 var tiposaida = $("#tiposaida").val();
 	 var servico = $("#iiservico").val();
 	 var ativo = $("#iiativo").val();
 
 	////alert(codinteracao+" - "+entrada+" - "+tipo+" - "+servico+" - "+ativo+" - "+cod);
 
-	 var ob = {cod:cod, codinteracao:codinteracao, entrada:entrada, tipo:tipo, servico:servico, ativo:ativo};
+	 var ob = {cod:cod, codinteracao:codinteracao, entrada:entrada, tipo:tipo, tiposaida:tiposaida, servico:servico, ativo:ativo};
 
 	 $.ajax({
                 type: "POST",
@@ -488,7 +489,7 @@ function btn_guardar_edicion(cod)
 
                  setTimeout(function(){
                  $("#myModal_editar").modal("hide").fadeIn("");
-							 },1500);
+							 },2500);
 
                  setTimeout(function(){
                  btn_listar_datos(cod);

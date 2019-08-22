@@ -5,6 +5,7 @@
 		<th bgcolor="#888"> # </th>
 		<th bgcolor="#888"> Entrada </th>
 		<th bgcolor="#888"> Tipo </th>
+		<th bgcolor="#888"> Tipo saida </th>
 		<th bgcolor="#888"> Entrada ativo </th>
 		<th bgcolor="#888"> Opções Entrada </th>
 		<th bgcolor="#888"> Opções saída </th>
@@ -17,7 +18,7 @@ $codusuario = $_POST['cod'];
 require '../conector/conexion.php';
 
 $i = 0;
-$query = "select i.codinteracao as codinteracao, i.entrada as entrada, i.tipo as tipo, i.ativo as ativo from interacao i where i.codusuario = $codusuario order by 1 desc";
+$query = "select i.codinteracao as codinteracao, i.entrada as entrada, i.tipo as tipo, i.tiposaida as tiposaida, i.ativo as ativo from interacao i where i.codusuario = $codusuario order by 1 desc";
 
 $sql = mysqli_query($conn, $query);
 
@@ -26,13 +27,14 @@ while($row = mysqli_fetch_array($sql)){
 	$icodinteracao = $row['codinteracao'];
 	$entrada = $row['entrada'];
 	$itipo = $row['tipo'];
-	//$servico = $row['servico'];
+	$tiposaida = $row['tiposaida'];
 	$iativo = $row['ativo'];
 ?>
      <tr>
      	<td class="css-selector"> <?php echo $i; ?></td>
      	<td class="css-selector"> <?php echo $entrada; ?></td>
      	<td class="css-selector"> <?php echo $itipo; ?></td>
+			<td class="css-selector"> <?php if ($tiposaida == 'a') {echo 'Imprimir aleatório'; } else {echo 'Imprimir todos';} ?></td>
      	<td class="css-selector"> <?php echo $iativo; ?></td>
 			<td class="col-lg-1">
 				<button class="btn btn-primary btn-xs" style="width: 100%;" data-toggle="modal" data-target="#myModal_editar" onclick="btn_editar('<?php echo $icodinteracao; ?>');"> Editar </button>
@@ -49,7 +51,7 @@ while($row = mysqli_fetch_array($sql)){
 			</tr>
 			</thead>
 <?php
-			$query = "select s.codinteracao as scodinteracao, s.codsaida as scodsaida, s.tipo as stipo, s.saida as saida, s.ativo as sativo from saida s where s.codinteracao = $icodinteracao order by 2 desc";
+			$query = "select s.codinteracao as scodinteracao, s.codsaida as scodsaida, s.tipo as stipo, s.saida as saida, s.ativo as sativo from saida s where s.codinteracao = $icodinteracao order by 2 asc";
 			$sql_s = mysqli_query($conn, $query);
 			while($row_s = mysqli_fetch_array($sql_s)){
 				$scodinteracao = $row_s['scodinteracao'];

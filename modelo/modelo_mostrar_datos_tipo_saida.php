@@ -4,7 +4,7 @@ $codinteracao = $_POST['codinteracao'];
 $codusuario = $_POST['cod'];
 
 ?>
- <select class="form-control" id="stipo">
+ <select style="width:500px;" class="form-control" id="stipo">
    <option value=""> Selecione tipo de serviço </option>
        <?php
          require '../conector/conexion.php';

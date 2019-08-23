@@ -25,8 +25,7 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 
 	<style type="text/css">
-
-	        /*Definido cor das linhas pares*/
+		        /*Definido cor das linhas pares*/
 	        .full_table_list tr:nth-child(even) {background: #EEE}
 
 	        /*Definindo cor das Linhas impáres*/
@@ -86,16 +85,18 @@
 													$codusuario = $_SESSION['cod'];
 							            require '../conector/conexion.php';
 
-							            $query = "SELECT entrada, saida FROM saida s inner join interacao i on (s.codinteracao=i.codinteracao) where s.ativo = 'S' and i.codusuario = $codusuario and i.tipo <> '$' order by 1";
+							            $query = "SELECT i.codinteracao, i.entrada, s.saida, s.codsaida FROM saida s inner join interacao i on (s.codinteracao=i.codinteracao) where s.ativo = 'S' and i.codusuario = $codusuario and i.tipo <> '$' order by 1";
 
 										$sql = mysqli_query($conn, $query);
 
 										while($row_s = mysqli_fetch_array($sql, MYSQLI_ASSOC)){
-							                $codinteracao = $row_s['entrada'];
-							                $entrada = $row_s['saida'];
+															$codinteracao = $row_s['codinteracao'];
+							                $entrada = $row_s['entrada'];
+							                $saida = $row_s['saida'];
+															$codsaida = $row_s['codsaida'];
 							                ?>
 
-							                <option value="<?php echo $codinteracao; ?>"><?php echo "{" . $codinteracao  . "} - " . $entrada; ?></option>
+							                <option value="<?php echo $codinteracao . "." . $codsaida; ?>"><?php echo "{" . $entrada  . "} - " . $saida; ?></option>
 							                <?php
 							            }
 							            ?>

@@ -7,7 +7,6 @@ $tipo = $_POST['tipo'];
 $ativo = $_POST['ativo'];
 $codusuario = $_POST['cod'];
 
-
  require '../conector/conexion.php';
 
  $soma = "select count(codsaida) + 1 as soma from saida where codinteracao = $codinteracao";

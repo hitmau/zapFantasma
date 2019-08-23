@@ -1,13 +1,12 @@
-
 <table class="table full_table_list">
 		<thead class="titulo" bgcolor="#00FF00">
 	<tr>
-		<th bgcolor="#888"> # </th>
-		<th bgcolor="#888"> Ref. </th>
-		<th bgcolor="#888"> Entrada </th>
-		<th bgcolor="#888"> Tipo </th>
-		<th bgcolor="#888"> Tipo saida </th>
-		<th bgcolor="#888"> Entrada ativo </th>
+		<th bgcolor="#888"  data-toggle="tooltip" title="X.X: Cód. crescente e Cód. interno."> # </th>
+		<th bgcolor="#888"  data-toggle="tooltip" title="X.X: Cód. entrada e Cód. saída."> Ref. </th>
+		<th bgcolor="#888"  data-toggle="tooltip" title="Entrada de dados que o cliente irá digitar."> Entrada </th>
+		<th bgcolor="#888"  data-toggle="tooltip" title="Tipo de busca que será consultada pelo bot."> Tipo </th>
+		<th bgcolor="#888"  data-toggle="tooltip" title="Tipo de Retorno cadastrado pelo Administrador. (Para mais de 1 opção)."> Tipo saida </th>
+		<th bgcolor="#888"  data-toggle="tooltip" title="Somente ativos = Sim irão ser computados."> Entrada ativo </th>
 		<th bgcolor="#888"> Opções Entrada </th>
 		<th bgcolor="#888"> Opções saída </th>
 
@@ -19,7 +18,7 @@ $codusuario = $_POST['cod'];
 require '../conector/conexion.php';
 
 $i = 0;
-$query = "select i.codinteracao as codinteracao, i.ref as ref, i.entrada as entrada, i.tipo as tipo, i.tiposaida as tiposaida, i.ativo as ativo from interacao i where i.codusuario = $codusuario order by 1 desc";
+$query = "select i.codinteracao as codinteracao, i.ref , (select ii.entrada from interacao ii where ii.codinteracao = SUBSTRING_INDEX(i.ref, '.', 1)) as entrada1 , (select ss.saida from saida ss where ss.codinteracao = SUBSTRING_INDEX(i.ref, '.' , 1) and ss.codsaida = SUBSTRING_INDEX(i.ref, '.', -1)) as entrada2, i.entrada as entrada, i.tipo as tipo, i.tiposaida as tiposaida, i.ativo as ativo from interacao i where codusuario = $codusuario order by 1 desc";
 
 $sql = mysqli_query($conn, $query);
 
@@ -27,14 +26,17 @@ while($row = mysqli_fetch_array($sql)){
 	$i++;
 	$icodinteracao = $row['codinteracao'];
 	$ref = $row['ref'];
+	$ref1 = $row['entrada1'];
+	$ref2 = $row['entrada2'];
+	$ref2 = "(" . $ref1 . ") - (" . $ref2 . ")";
 	$entrada = $row['entrada'];
 	$itipo = $row['tipo'];
 	$tiposaida = $row['tiposaida'];
 	$iativo = $row['ativo'];
 ?>
      <tr>
-     	<td class="css-selector"> <?php echo $i; ?></td>
-			<td class="css-selector"> <?php echo $ref; ?></td>
+     	<td class="css-selector"> <?php echo $i . "." . $icodinteracao; ?></td>
+			<td class="css-selector"   data-toggle="tooltip" title="Referência anterior (x.x) Cód. entrada e Cód. saída: <?php echo $ref2; ?>"> <?php echo $ref; ?></td>
      	<td class="css-selector"> <?php echo $entrada; ?></td>
      	<td class="css-selector"> <?php echo $itipo; ?></td>
 			<td class="css-selector"> <?php if ($tiposaida == 'a') {echo 'Imprimir aleatório'; } else {echo 'Imprimir todos';} ?></td>

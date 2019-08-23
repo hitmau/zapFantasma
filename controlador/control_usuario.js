@@ -1,4 +1,8 @@
 
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
 function start_recarrega(cod)
 {
 	var ob = {cod:cod};
@@ -635,9 +639,10 @@ function btn_guardar_edicion_saida(cod)
 	 var saida = $("#saida").val();
 	 var tipo = $("#tipo").val();
 	 var ativo = $("#ativo").val();
+	 var cod = $("#cod").val();
 
 	////alert(codinteracao+" - "+codsaida+" - "+saida+" - "+tipo+" - "+ativo+" - "+cod);
-	 var ob = {acodinteracao:acodinteracao, codinteracao:codinteracao, codsaida:codsaida, saida:saida, tipo:tipo, ativo:ativo};
+	 var ob = {cod:cod, acodinteracao:acodinteracao, codinteracao:codinteracao, codsaida:codsaida, saida:saida, tipo:tipo, ativo:ativo};
 
 	 $.ajax({
 								type: "POST",

@@ -104,7 +104,8 @@
 										  </td>
 								  </tr>
 				    				<td> <label> Entrada </label></td>
-				    				<td> <input type="text" id="entrada" style="width:500px;" class="form-control" placeholder="* Texto de entrada (use vírgula para definir mais de 1 palavra)"></td>
+				    				<td> <textarea id="entrada" style="width:500px;" class="form-control" placeholder="* Texto de entrada (use vírgula para definir mais de 1 palavra)" rows="4"></textarea></td>
+											<!--input type="text" id="entrada" style="width:500px;" class="form-control" placeholder="* Texto de entrada (use vírgula para definir mais de 1 palavra)"-->
 									</tr>
 				    			<tr> <td> <label> Tipo de busca </label></td>
 				    				<td>
@@ -206,6 +207,54 @@
 						</td>
 					</tr>
 				</table>
+				<!--mensagem inicial para o cliente-->
+				<table>
+					<tr>
+						<hr>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<?php
+							$codusuario = $_SESSION['cod'];
+							require '../conector/conexion.php';
+
+							$query = "SELECT ativo, msg, ultimahora FROM mensagem WHERE codusuario = $codusuario limit 1";
+
+							$sql = mysqli_query($conn, $query);
+							$valida = '';
+							while($row_s = mysqli_fetch_array($sql, MYSQLI_ASSOC)){
+									$ativo = $row_s['ativo'];
+									$msg = $row_s['msg'];
+									$ultimahora = $row_s['ultimahora'];
+								}
+								if (empty($ativo)){
+									$valida = '';
+									$msg = '';
+									$ultimahora = '';
+								} elseif ($ativo == "S"){
+								$valida = 'checked';
+							} else {
+								$valida = '';
+							}
+									?>
+
+							<label> Ativar mensagem inicial do dia:  <input type="checkbox" id="ativamsg" <?php echo $valida;?>></label>
+						<tr>
+						<td>
+							<label> Texto:  </label></td>
+						<td> <textarea id="msgbv" style="width:600px;" class="form-control" placeholder="* Resposta ao cliente assim que entrar em contato, isso será respondido a cada 1 hora." rows="4"><?php echo $msg;?></textarea>
+							<br>
+							<button class="btn btn-success btn-md" onclick="btn_guardar_dato_mensagem(<?php echo $_SESSION['cod']; ?>);"> Gravar </button></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<hr>
+							<div id="panel_msg"></div>
+						</td>
+					</tr>
+			</table>
+				<hr>
+			<br>
 				<a class="btn btn-info btn-md" href="vista_menu_contatos.php" onclick="btn_listar_datos_contatos()"> Ir para Contados </a>
 				<a class="btn btn-info btn-md" href="vista_menu_parametros.php" onclick="btn_listar_datos_parametros()"> Ir para parâmetros </a>
 				<a class="btn btn-info btn-md" href="vista_menu_usuario.php" onclick="btn_listar_datos_usuario()"> Ir para Usuários </a>

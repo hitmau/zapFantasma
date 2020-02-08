@@ -133,6 +133,49 @@ function start_interromper(cod)
              });
 }
 
+function btn_guardar_dato_mensagem(cod)
+{
+  if (document.getElementById("ativamsg").checked) {
+    var ativamsg = "S";
+  }
+  else {
+    var ativamsg = "N";
+  }
+
+	 var msgbv = $("#msgbv").val();
+	 //var cadastro = $("#cadastro").val();
+
+	 //alert(cod+" - "+ativamsg+" - "+msgbv);
+
+	 var ob = {cod:cod, ativamsg:ativamsg, msgbv:msgbv};
+
+	 $.ajax({
+                type: "POST",
+                url:"../modelo/modelo_registrar_mensagem.php",
+                data: ob,
+                beforeSend: function(objeto){
+
+                },
+                success: function(data)
+                {
+
+                 $("#panel_msg").html(data);
+                 btn_listar_datos(cod);
+
+                 setTimeout(function(){
+                  location.reload();
+                },2000);
+
+                 setTimeout(function(){
+                  $("#panel_msg").html("");
+                },2000);
+
+
+                }
+             });
+             alert("Mensagem: " + msgbv + " gravada com sucesso!");
+}
+
 function btn_guardar_dato(cod)
 {
 	 var entrada = $("#entrada").val();

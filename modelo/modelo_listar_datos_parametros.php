@@ -13,7 +13,7 @@ $codusuario = $_POST['cod'];
 require '../conector/conexion.php';
 
 $i = 0;
-$query = "Select codparametros, obs, parametro, tipo, data, case when ativo = 'S' then 'Sim' else 'Não' end as ativo from parametros where editavel = 'S' and codusuario = $codusuario order by 1";
+$query = "Select codparametros, obs, parametro, tipo, data, case when ativo = 'S' then 'Sim' else case when ativo = 'N' then 'Não' else ativo end end as ativo from parametros where editavel = 'S' and codusuario = $codusuario order by 1";
 
 $sql = mysqli_query($conn, $query);
 

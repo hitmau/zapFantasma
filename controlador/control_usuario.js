@@ -184,7 +184,7 @@ function btn_guardar_dato(cod)
 	 var msganterior = $("#msganterior").val();
 	 var iativo = $("#iiiativo").val();
 
-	//alert(cod + " - "+entrada+" - "+itipo+" - "+iativo);
+	//alert(" - cod "+cod + " - entrada "+entrada+" - itipo "+itipo+" - tiposaida "+tiposaida+" - msganterior "+msganterior+" - iativo "+iativo);
 
 	 var ob = {cod:cod, entrada:entrada, itipo:itipo, tiposaida:tiposaida, iativo:iativo , msganterior:msganterior};
 	 $.ajax({

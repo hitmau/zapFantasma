@@ -156,16 +156,22 @@
 												$codusuario = $_SESSION['cod'];
 						            require '../conector/conexion.php';
 
-						            $query = "Select * From interacao where codusuario = $codusuario order by 1 desc";
+						            $query = "Select i.codinteracao as codinteracao, i.entrada, s.saida as ref From interacao i left join saida s on (SUBSTRING_INDEX(i.ref, '.', 1) = s.codinteracao and SUBSTRING_INDEX(i.ref, '.', -1) = s.codsaida) where i.codusuario = $codusuario order by 1 desc";
 
 									$sql = mysqli_query($conn, $query);
 
 									while($row_s = mysqli_fetch_array($sql, MYSQLI_ASSOC)){
 						                $codinteracao = $row_s['codinteracao'];
 						                $entrada = $row_s['entrada'];
+														if (!empty($row_s['ref'])){
+															$ref = "{ " . $row_s['ref'] . " } - ";
+														} else {
+															$ref = "";
+														}
+
 						                ?>
 
-						                <option value="<?php echo $codinteracao; ?>"> <?php echo $entrada; ?></option>
+						                <option value="<?php echo $codinteracao; ?>"> <?php echo "$ref $entrada"; ?></option>
 						                <?php
 						            }
 						            ?>

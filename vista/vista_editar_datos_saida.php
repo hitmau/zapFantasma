@@ -41,7 +41,8 @@ while($row_s = mysqli_fetch_array($sql, MYSQLI_ASSOC)){
 	</select>
 
 <label for="saida"> Saida </label>
-<input type="text" class="form-control" id="saida" placeholder="* Nova saída de dados " value="<?php echo $saida; ?>">
+<textarea id="saida" style="width:500px;" class="form-control" placeholder="* Nova saída de dados " rows="4"><?php echo $saida; ?></textarea>
+<!--input type="text" class="form-control" id="saida" placeholder="* Nova saída de dados " value="<?php //echo $saida; ?>"-->
 
 <label for="atipo"> tipo </label>
 <select id="tipo" class="form-control" onchange="select_usuario();">

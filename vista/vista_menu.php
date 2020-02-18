@@ -35,6 +35,16 @@
 
 					.titulo {font-family: 'Fira Sans Extra Condensed', sans-serif; font-size:18px;}
 
+					#holder{
+						    height: 50px;
+								position:relative;
+								background:Black;
+								width:100%;
+								bottom:0;
+								text-align: right;
+								padding-left: : 50px;
+					}
+
 	    </style>
 
 </head>
@@ -301,4 +311,8 @@
     </div>
 
   </div>
+</div>
+<div id="holder">
+	<br>
+By Hitmau ...................
 </div>
